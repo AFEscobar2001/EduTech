@@ -3,8 +3,6 @@ package com.example.EduTech.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -12,7 +10,6 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Curso {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String codigo;
     private String nombre;
     private String descripcion;
@@ -22,7 +19,11 @@ public class Curso {
     @ManyToOne
     @JoinColumn(name = "usuario_rut", referencedColumnName = "rut")
     @JsonBackReference
-    private Usuario usuario;
+    private Profesor profesor;
+
+    @ManyToOne
+    @JoinColumn(name = "estudiante_rut", referencedColumnName = "rut")
+    private Estudiante estudiante;
 
     public Curso() {
         this.codigo = "";
@@ -55,14 +56,6 @@ public class Curso {
         this.descripcion = descripcion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     public Usuario getInstructor() {
         return instructor;
     }
@@ -77,6 +70,22 @@ public class Curso {
 
     public void setValor_curso(double valor_curso) {
         this.valor_curso = valor_curso;
+    }
+
+    public Profesor getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
     }
  
 

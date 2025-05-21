@@ -13,6 +13,13 @@ public class CursoDTO {
         this.rut = "";
     }
 
+    public CursoDTO(String codigo, String nombre, String descripcion, String rut) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.rut = rut;
+    }
+
     public String getCodigo() {
         return codigo;
     }
@@ -45,6 +52,6 @@ public class CursoDTO {
         this.rut = rut;
     }
 
-    
+
 
 }

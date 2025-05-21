@@ -5,83 +5,71 @@ import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Usuario {
     @Id
-    private String rut;
-    private String nombre;
-    private String apellido;
-    private String correo;
-    private String contrasena;
-    private Rol rol;
+    private String mail;
+    private String contrasenia;
+    private boolean estado;
+    private String usuario;
 
-    @OneToMany
-    @JoinColumn(name = "curso_id")
-    private List<Curso> cursos;
+    @ManyToMany
+    @JoinTable(
+        name = "usuario_rol",
+        joinColumns = @JoinColumn(name = "usuario_mail"),
+        inverseJoinColumns = @JoinColumn(name = "rol_id")
+    )
+    private List<Rol> roles;
 
     public Usuario() {
-        this.rut = "";
-        this.nombre = "";
-        this.apellido = "";
-        this.correo = "";
-        this.contrasena = "";
+        this.mail = "";
+        this.contrasenia = "";
+        this.estado = false;
+        this.usuario = "";
     }
 
-    public String getRut() {
-        return rut;
+    public String getMail() {
+        return mail;
     }
 
-    public void setRut(String rut) {
-        this.rut = rut;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
-    public String getApellido() {
-        return apellido;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public List<Rol> getRoles() {
+        return roles;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
     }
 
-    public List<Curso> getCursos() {
-        return cursos;
-    }
-
-    public void setCursos(List<Curso> cursos) {
-        this.cursos = cursos;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
+    
 }

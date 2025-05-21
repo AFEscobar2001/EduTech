@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.EduTech.dto.CursoDTO;
 import com.example.EduTech.model.Curso;
-import com.example.EduTech.model.Usuario;
+import com.example.EduTech.model.Estudiante;
 import com.example.EduTech.repository.CursoRepository;
-import com.example.EduTech.repository.UsuarioRepository;
+import com.example.EduTech.repository.EstudianteRepository;
 
 @Service
 public class CursoService {
@@ -17,20 +17,20 @@ public class CursoService {
     private CursoRepository cursoRepository;
     
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private EstudianteRepository estudianteRepository;
 
     public String guardarCurso(CursoDTO cursoDTO) {
-        if(!usuarioRepository.existsById(cursoDTO.getRut())) {
+        if(!estudianteRepository.existsById(cursoDTO.getRut())) {
             return "El usuario no existe";
         }
 
-        Usuario usuario = usuarioRepository.findById(cursoDTO.getRut()).get();
+        Estudiante estudiante = estudianteRepository.findById(cursoDTO.getRut()).get();
 
         Curso curso = new Curso();
         curso.setCodigo(cursoDTO.getCodigo());
         curso.setNombre(cursoDTO.getNombre());  
         curso.setDescripcion(cursoDTO.getDescripcion());
-        curso.setUsuario(usuario);
+        curso.setEstudiante(estudiante);
 
         cursoRepository.save(curso);
         return "Curso guardado correctamente";

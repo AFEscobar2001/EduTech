@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Cupones {
+public class Cupon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_curso;
@@ -14,7 +14,7 @@ public class Cupones {
     private double descuento;
     private boolean estado;
 
-    public Cupones () {
+    public Cupon () {
         this.codigo = "";
         this.descuento = 0;
         this.estado = false;
