@@ -2,9 +2,9 @@ package com.example.EduTech.model;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -15,8 +15,10 @@ public class Usuario {
     private String apellido;
     private String correo;
     private String contrasena;
+    private Rol rol;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany
+    @JoinColumn(name = "curso_id")
     private List<Curso> cursos;
 
     public Usuario() {
@@ -75,5 +77,11 @@ public class Usuario {
         this.cursos = cursos;
     }
 
-    
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
 }
